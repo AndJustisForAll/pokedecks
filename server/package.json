@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "debug": "nodemon --inspect-brk index.js",
+    "client": "yarn --cwd client run start",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "dev-debug": "concurrently \"yarn run client\" \"yarn run debug\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && yarn run build --prefix client",
+    "webhook": "./sendgrid_webhook.sh"
+  },
+  "name": "pokedecks",
+  "version": "1.0.0",
+  "description": "Pokemon TCG creator",
+  "main": "index.js",
+  "author": "Angel Munoz",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.3"
+  }
+}

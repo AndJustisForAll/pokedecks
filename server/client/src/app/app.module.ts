@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRouterModule } from './app-router.module';
 import { DeckBuilderModule } from './deck-builder/deck-builder.module';
@@ -17,6 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         AngularMaterialModule,
         AppRouterModule,
         DeckBuilderModule

@@ -1,0 +1,36 @@
+.card-container {
+    display: inline-flex;
+    justify-content: space-between;
+    margin: 5px;
+    position: relative;
+}
+
+.card{
+    background-color: grey;
+    padding:7px 7px 0 0;
+    border-radius: 10px;
+}
+.card-container .card.expanded-legal{
+    background-color: purple;
+}
+.card-container .card.standard-legal{
+    background-color: limegreen;
+}
+
+
+.card-container:hover a.btn {
+    display:block;
+}
+
+.card-container a.btn {
+    display: none;
+    position: absolute;
+    bottom: 200px;
+}
+
+.card-container .add {
+}   
+
+.card-container .remove {
+    right: 0;
+}

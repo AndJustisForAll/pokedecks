@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
+import { StoreModule} from '@ngrx/store';
+import { rootReducer } from './store/store';
 
 import { AppRouterModule } from './app-router.module';
 import { DeckBuilderModule } from './deck-builder/deck-builder.module';
@@ -18,6 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ],
     imports: [
         BrowserModule,
+        StoreModule.forRoot({deckBuilder: rootReducer}),
         HttpClientModule,
         AngularMaterialModule,
         AppRouterModule,
@@ -26,4 +29,5 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     providers: [],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

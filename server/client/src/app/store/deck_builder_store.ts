@@ -1,5 +1,8 @@
 import * as actions from './actions';
 import { IAction } from './store';
+import { createSelector } from '@ngrx/store';
+
+const SAME_CARD_DECK_LIMIT = 4;
 
 export function deckBuilderReducer(
   state: IDeckBuilderState = INITIAL_DECK_STATE,
@@ -10,7 +13,8 @@ export function deckBuilderReducer(
       const newCardID = action.payload.id;
       const deck = state.deck || [];
       const hasSameCardLimit =
-        deck.filter(card => (card.id = newCardID)).length >= 4;
+        deck.filter(card => card.id === newCardID).length >=
+        SAME_CARD_DECK_LIMIT;
 
       if (hasSameCardLimit) {
         console.warn('you have reached card limit');
@@ -23,7 +27,7 @@ export function deckBuilderReducer(
     case actions.REMOVE_CARD:
       const removeCardID = action.payload.id;
       const indexToRemove = state.deck.findIndex(
-        card => (card.id = removeCardID)
+        card => card.id === removeCardID
       );
 
       if (indexToRemove < 0) {

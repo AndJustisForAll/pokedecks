@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import * as actions from './../store/actions';
 import { IAppState } from './../store/store';
 import { MOCK_GARCHOMP } from './../data/mockData';
+import { IDeck } from '../models/deck';
 
 @Component({
   selector: 'app-deck-builder',
@@ -14,13 +15,16 @@ import { MOCK_GARCHOMP } from './../data/mockData';
 export class DeckBuilderComponent implements OnInit {
   searchText: string;
   results = MOCK_GARCHOMP;
-  cards$: any;
+
+  deckBuilder: IDeck;
 
   constructor(
     private searchCardService: SearchCardService,
     private store: Store<IAppState>
   ) {
-    this.cards$ = store.pipe(select('deckBuilder'));
+    store.pipe(select('deckBuilder')).subscribe((dBuilder: IDeck) => {
+      this.deckBuilder = dBuilder;
+    });
   }
 
   ngOnInit() {}

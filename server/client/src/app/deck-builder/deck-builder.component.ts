@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchCardService } from './../services/search-card.service';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
 import * as actions from './../store/actions';
 import { IAppState } from './../store/store';
 import { MOCK_GARCHOMP } from './../data/mockData';
@@ -24,6 +23,7 @@ export class DeckBuilderComponent implements OnInit {
   ) {
     store.pipe(select('deckBuilder')).subscribe((dBuilder: IDeck) => {
       this.deckBuilder = dBuilder;
+      console.log(this.deckBuilder);
     });
   }
 

@@ -1,0 +1,47 @@
+<!-- TODO:AMUNOZ make a component -->
+<div class="cards-container pokemon">
+  <h1>Pokemon</h1>
+  <ul class="card-container builder">
+    <li *ngFor="let card of deckBuilder.deck | pokemonCards" class="card">
+      <div># {{card.count}} {{card.id | uppercase }} {{card.name}}</div>
+      <span (click)="addCard(card)" class="waves-effect waves-light btn-small green add">
+        <i class="material-icons">add</i>
+      </span>
+      <span (click)="removeCard(card)" class="waves-effect waves-light btn-small red remove">
+        <i class="material-icons">remove</i>
+      </span>
+    </li>
+  </ul>
+</div>
+
+
+<div class="cards-container trainer">
+  <h1>Trainer</h1>
+  <ul class="card-container builder">
+    <li *ngFor="let card of deckBuilder.deck | trainerCards" class="card">
+      <div># {{card.count}} {{card.id | uppercase }} {{card.name}}</div>
+      <span (click)="addCard(card)" class="waves-effect waves-light btn-small green add">
+        <i class="material-icons">add</i>
+      </span>
+      <span (click)="removeCard(card)" class="waves-effect waves-light btn-small red remove">
+        <i class="material-icons">remove</i>
+      </span>
+    </li>
+  </ul>
+
+</div>
+
+<div class="cards-container energy">
+  <h1>Energy</h1>
+  <ul class="card-container builder">
+    <li *ngFor="let card of deckBuilder.deck | energyCards" class="card">
+      <div># {{card.count}} {{card.id | uppercase }} {{card.name}}</div>
+      <a (click)="addCard(card)" class="waves-effect waves-light btn-small green add">
+        <i class="material-icons">add</i>
+      </a>
+      <a (click)="removeCard(card)" class="waves-effect waves-light btn-small red remove">
+        <i class="material-icons">remove</i>
+      </a>
+    </li>
+  </ul>
+</div>

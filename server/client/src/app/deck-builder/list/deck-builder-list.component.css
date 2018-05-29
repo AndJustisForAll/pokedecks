@@ -1,0 +1,8 @@
+div.cards-container h1 {
+  font-size: 20px;
+}
+
+ul.card-container.builder > li {
+  display: flex;
+  justify-content: space-between;
+}

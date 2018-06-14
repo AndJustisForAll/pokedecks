@@ -12,7 +12,7 @@ div.deck-list {
   position: relative;
   display: inline-flex;
   justify-content: space-between;
-  width: 30%;
+  width: 15%;
 }
 
 .results {
@@ -39,19 +39,14 @@ div.deck-list {
   background-color: limegreen;
 }
 
-.card-container:hover a.btn {
-  display: block;
-}
-
-.card-container a.btn {
-  display: none;
+.card-id-ribbon {
+  content: '';
+  bottom: 50px;
   position: absolute;
-  bottom: 20px;
-}
-
-.card-container .add {
-}
-
-.card-container .remove {
-  right: 0;
+  background: black;
+  color: white;
+  opacity: 0.6;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
 }

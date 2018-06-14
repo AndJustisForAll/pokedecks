@@ -5,6 +5,7 @@ import * as actions from './../store/actions';
 import { IAppState } from './../store/store';
 import { MOCK_GARCHOMP } from './../data/mockData';
 import { IDeck } from '../models/deck';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-deck-builder',
@@ -13,7 +14,7 @@ import { IDeck } from '../models/deck';
 })
 export class DeckBuilderComponent implements OnInit {
   searchText: string;
-  results = MOCK_GARCHOMP;
+  results = [];
 
   deckBuilder: IDeck;
 
@@ -23,7 +24,6 @@ export class DeckBuilderComponent implements OnInit {
   ) {
     store.pipe(select('deckBuilder')).subscribe((dBuilder: IDeck) => {
       this.deckBuilder = dBuilder;
-      console.log(this.deckBuilder);
     });
   }
 
@@ -31,6 +31,13 @@ export class DeckBuilderComponent implements OnInit {
 
   async findByName() {
     // this.results = await this.searchCardService.findByName(this.searchText);
+    // let temp = MOCK_GARCHOMP.map(card => {
+    //   if (_.includes(this.results, card.id)) {
+    //     const cardCounter = _.countBy(this.results, 'id');
+    //     card.quantity = cardCounter[card.id];
+    //   }
+    // });
+    this.results = MOCK_GARCHOMP;
     console.log(this.results);
   }
 

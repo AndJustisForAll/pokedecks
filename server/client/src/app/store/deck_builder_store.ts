@@ -1,6 +1,7 @@
 import * as actions from './actions';
 import { IAction } from './store';
 import { createSelector } from '@ngrx/store';
+import { ICard } from './../models/card';
 
 const SAME_CARD_DECK_LIMIT = 4;
 
@@ -10,37 +11,42 @@ export function deckBuilderReducer(
 ) {
   switch (action.type) {
     case actions.ADD_CARD:
-      const newCardID = action.payload.id;
-      const deck = state.deck || [];
-      const hasSameCardLimit =
-        deck.filter(card => card.id === newCardID).length >=
-        SAME_CARD_DECK_LIMIT;
+      const id = action.payload.id;
+      const deck = state.deck;
+      const card: ICard = deck[id] ? { ...deck[id] } : { ...action.payload };
+      card.count = card.count || 0;
 
-      if (hasSameCardLimit) {
-        console.warn('you have reached card limit');
-        return state;
+      //TODO:AMUNOZ some cards might have have limit of 1
+      if (card.count === SAME_CARD_DECK_LIMIT) {
+        card.count = 1;
+        return Object.assign({}, state, {
+          deck: {
+            ...deck,
+            [id]: card
+          }
+        });
       }
 
+      card.count++;
       return Object.assign({}, state, {
-        deck: [...state.deck, action.payload]
+        deck: {
+          ...deck,
+          [id]: card
+        }
       });
+
     case actions.REMOVE_CARD:
       const removeCardID = action.payload.id;
-      const indexToRemove = state.deck.findIndex(
-        card => card.id === removeCardID
-      );
 
-      if (indexToRemove < 0) {
-        console.log('card not found in deck');
+      if (!Object.keys(state.deck).includes(removeCardID)) {
+        console.warn('card not found in deck');
         return state;
       }
 
-      const deckAfterRemove = [
-        ...state.deck.slice(0, indexToRemove),
-        ...state.deck.slice(indexToRemove + 1, state.deck.length)
-      ];
+      const deckCopy = { ...state.deck };
+      delete deckCopy[removeCardID];
 
-      return Object.assign({}, state, { deck: deckAfterRemove });
+      return Object.assign({}, state, { deck: deckCopy });
     default:
       return state;
   }
@@ -53,5 +59,5 @@ export interface IDeckBuilderState {
 
 const INITIAL_DECK_STATE: IDeckBuilderState = {
   name: '',
-  deck: []
+  deck: {}
 };

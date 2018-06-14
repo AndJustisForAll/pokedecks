@@ -10,15 +10,10 @@
     </div>
     <div class="results">
         <ul>
-            <li *ngFor="let card of results" class="card-container">
+            <li *ngFor="let card of results" class="card-container" (click)="addCard(card)">
                 <img src="{{card.imageUrl}}" alt="{{card.name}}" class="card" [class.expanded-legal]="card.expandedLegal" [class.standard-legal]="card.standardLegal">
-                <a (click)="addCard(card)" class="btn btn-large green add">
-                    <i class="material-icons">exposure_plus_1</i>
-                </a>
-                <a (click)="removeCard(card)" class="btn btn-large red remove">
-                    <i class="material-icons">exposure_neg_1</i>
-                </a>
-            </li>
+                <div class="card-id-ribbon">{{card.id | uppercase}} </div>
+
         </ul>
     </div>
 

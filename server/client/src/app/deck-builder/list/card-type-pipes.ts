@@ -2,14 +2,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 import * as _ from 'lodash';
 
 const pipeTransform = function(deck: any, filterProp: string) {
-  const cardCounter = _.countBy(deck, 'id');
-  const compactDeck = _.chain(deck)
+  const compactDeck = _
+    .chain(deck)
     .filter(card => card.supertype === filterProp)
     .uniqBy('id')
-    .map(card => {
-      card.count = cardCounter[card.id];
-      return card;
-    })
     .sortBy('id')
     .value();
 
